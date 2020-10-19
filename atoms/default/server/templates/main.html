@@ -1,1 +1,50 @@
-<div class="interactive-wrapper">HTML</div>
+<div class="interactive-wrapper all">
+    <a name="doggraphic" class="articleLink"></a>
+    <div class="interactive-container offset">
+        <div class="row">
+    	    <div class="main-col">
+    	            <div class="row figureTitle">How closely related <span id="currentDog"></span> to other breeds?</div>
+    	            <div class="row subTitle">Showing a relatedness index between two breeds based on 'identical-by-descent haplotype sharing' which measures identical sections of DNA inherited from a common ancestor</div>	
+    	    
+                    <div class="notes row">
+                        
+                        <div class="col30 controls">    
+                            <div class="row ">View by breed</div>
+                            <div><select id="breedSelector"></select></div>
+                        </div>    
+                        
+                        <div class="col30 controls">    
+                            <div class="row ">View by group</div>
+                            <div><select id="groupSelector"></select></div>
+                        </div>    
+
+                        <div class="col40 key">
+                            <div class="row ">Relatedness index</div>
+                            <div id="chartKey"></div>    
+                        </div>   
+
+                    </div>
+
+                    <div class="notes">
+                        <div class="upDownButton"><b>Group key**</b> <span class="upDown">▼</span></div>
+                        <div id="colorKey" class="hide"> </div>
+                    </div>
+            </div>    
+        </div>
+    
+    
+        <div id="graphicContainer">
+                <div id="infoButton">
+
+                </div>    
+
+                <div id="statusMessage" class="btn">Loading...</div>
+        </div>
+
+        <div class="row notes">
+            <!-- **Groups are the 23 clades given by Ostrander et al.'s analysis. Colors are mostly to indicate whether two dogs are in different clades, rather than to identify the specific clades as it's very difficult to make a categorical colour key work with 23 colours -->
+        </div>
+    </div>
+</div>
+
+</div>
