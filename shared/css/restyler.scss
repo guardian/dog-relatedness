@@ -1,0 +1,160 @@
+
+.content--interactive .content__headline, .headline {
+  font-size: 32px;
+  line-height: 35.2px;
+  font-family: "Guardian Egyptian Web", "Guardian Text Egyptian Web", Georgia, serif;
+  font-weight: 700
+}
+@media (min-width: 71.25em) {
+  .content--interactive .content__headline, .headline {
+    font-size: 50px;
+    line-height: 54px
+  }
+}
+.headline {
+  font-family: "Guardian Headline", "Guardian Egyptian Web", Georgia, serif
+}
+.content__standfirst {
+  font-weight: 200;
+  line-height: 25px;
+  font-size: 22px;
+  max-width: 280px
+}
+@media (min-width: 71.25em) {
+  .content__standfirst {
+    max-width: 460px
+  }
+}
+.content__main, .content__head {
+  position: relative
+}
+.content__main:before, .content__head:before {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  min-height: 500px;
+  content: ' ';
+  border-left: 1px solid #dfdfdf
+}
+@media (min-width: 71.25em) {
+  .content__main:before, .content__head:before {
+    left: calc((100% - 1140px)/2 + 170px)
+  }
+}
+@media (min-width: 81.25em) {
+  .content__main:before, .content__head:before {
+    left: calc((100% - 1300px)/2 + 250px)
+  }
+}
+a, .u-fauxlink {
+  color: #c70000;
+  cursor: pointer;
+  text-decoration: none
+}
+.tonal--tone-news .tone-colour {
+  color: #c70000
+}
+.content__meta-container {
+  background-image: repeating-linear-gradient(to bottom, #dcdcdc, #dcdcdc 0.0625rem, transparent 0.0625rem, transparent 0.25rem);
+  background-repeat: repeat-x;
+  background-position: top;
+  -webkit-background-size: 0.0625rem 0.8125rem;
+  background-size: 0.0625rem 0.8125rem;
+  padding-top: 12px;
+  border-top: none
+}
+.content__main-column--interactive>p, .content__main-column--interactive>h2, .content__main-column--interactive>ul, .content__main-column--interactive .element-interactive, .content__main-column--interactive .element-atom {
+  max-width: 620px
+}
+@media (min-width: 71.25em) {
+  .content__main-column--interactive>p, .content__main-column--interactive>h2, .content__main-column--interactive>ul, .content__main-column--interactive .element-interactive, .content__main-column--interactive .element-atom {
+    margin-left: 160px !important
+  }
+}
+@media (min-width: 81.25em) {
+  .content__main-column--interactive>p, .content__main-column--interactive>h2, .content__main-column--interactive>ul, .content__main-column--interactive .element-interactive, .content__main-column--interactive .element-atom {
+    margin-left: 240px !important
+  }
+}
+.content__main-column--interactive>h2 {
+  font-family: "Guardian Headline", "Guardian Egyptian Web", Georgia;
+  font-size: 36px;
+  line-height: 42px;
+  font-weight: 700;
+  color: #333;
+  margin-top: 36px;
+  margin-bottom: 6px
+}
+@media (max-width: 61.24em) {
+  .content__main-column--interactive>h2 {
+    font-size: 24px;
+    line-height: 28px
+  }
+}
+.content__main-column--interactive .element--immersive {
+  max-width: initial;
+  margin-left: 0 !important;
+  margin-bottom: 36px !important
+}
+.content__main-column--interactive .element--showcase {
+  max-width: 860px
+}
+.content__main-column--interactive .element-image {
+  background: #fff;
+  padding-bottom: 5px
+}
+.content__main-column--interactive .element-image img {
+  width: 100%;
+  height: auto
+}
+.content__main-column--interactive figcaption {
+  font-size: 12px;
+  line-height: 16px;
+  font-family: Guardian Text Sans Web, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
+  color: #767676
+}
+.content--interactive:not(.paid-content) .element-interactive {
+  background-color: transparent
+}
+.content__main-column--interactive blockquote, .prose blockquote {
+  font-style: normal;
+  margin: 0 0 10px 10px;
+  float: right;
+  width: 40%;
+  border-top: 4px solid #000;
+  background: #fff;
+  padding: 10px 0;
+  font-family: 'Guardian Text Sans Web', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+  font-size: 13px;
+  line-height: 18px
+}
+@media (max-width: 61.24em) {
+  .content__main-column--interactive blockquote, .prose blockquote {
+    float: none;
+    margin-left: 0;
+    width: auto;
+    background-color: #f6f6f6;
+    margin-top: 6px;
+    margin-bottom: 12px;
+    padding-left: 5px;
+    padding-right: 5px
+  }
+}
+@media (min-width: 71.25em) {
+  .content__main-column--interactive blockquote, .prose blockquote {
+    width: 150px;
+    float: left;
+    margin: 0
+  }
+}
+@media (min-width: 81.25em) {
+  .content__main-column--interactive blockquote, .prose blockquote {
+    width: 230px
+  }
+}
+.content__main-column--interactive blockquote p, .prose blockquote p {
+  margin-bottom: 0
+}
+.prose blockquote.quoted::before {
+  display: none
+}
