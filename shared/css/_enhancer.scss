@@ -218,11 +218,19 @@ a, .u-fauxlink {
 }
 
 @media (min-width: 81.25em) {
-  .element--immersive figcaption {
+  .element--immersive figcaption, .element--supporting figcaption {
         width: 13.75rem;
         float: left;
   }
+
+  .element-image.element--supporting {
+    margin-left: 0px !important;
+    background: none;
+  }
 }
+
+
+
 
 .image {
     position: relative;
