@@ -21,6 +21,36 @@
     	position: relative;
     }
 
+    #controlRow {
+        position:relative;
+    }
+
+    #hintSelector {
+        position: absolute;
+        left: 180px;
+        top: 60px;
+    }
+
+    #hintDogs {
+        position: absolute;
+        left: 50%;
+        top: 30%;
+    }
+
+    @media (max-width: 750px) {
+        #hintSelector {
+        left: 180px;
+        top: 60px;
+        }
+
+        #hintDogs {
+            left: 50%;
+            top: 36%;
+        }
+
+    }
+
+
     #infoPanel {
     	background-color: #FFF;
     	border:2px solid #000;

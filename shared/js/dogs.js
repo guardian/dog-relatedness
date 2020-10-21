@@ -17,13 +17,15 @@ export function doggies(dogs, pics, dogbreed) {
 
 	const images = group(pics.sheets.Sheet1, d => d.breed)
 
+	var groupOrBreed = 'breed';
+
 	// var generic = ["Levriero Meridionale", "Mastino Abruzzese", "Miniature Xoloitzcuintli", "Cane Paratore","Xigou"]
-	// console.log(images)
+	
 
 	var width = document.querySelector(`.${dogbreed} #graphicContainer`).getBoundingClientRect().width;
 	var container = document.querySelector(`.${dogbreed} #graphicContainer`).getBoundingClientRect().width;   
 	var context = d3.select(`.${dogbreed} .interactive-container`)
-
+	console.log(dogbreed, context)
 	// context.text("yea")
 	var winW = window.innerWidth
 	var winH = window.innerHeight
@@ -68,14 +70,32 @@ export function doggies(dogs, pics, dogbreed) {
 
 	scaleVal = 1260
 
-	if (winW >= winH) {
-		height = width * 0.6;
+	var radiusVal = 20
+
+	if (isMobile) {
+		radiusVal = 20
 	}
 
-	else {
-		height = width * 1.6
-		scaleVal = 0.8
-	}
+	height = (2 * 170) + (2 * radiusVal) + 120
+
+	// if (winW >= winH) {
+	// 	height = width * 0.6;
+	// }
+
+	// else {
+
+	// 	height = (2 * 170) + (2 * radiusVal) + 120
+
+	// 	// if (winW >= 650) {
+	// 	// 	height = width * 0.8
+	// 	// }
+
+	// 	// else {
+	// 	// 	height = width * 1.6
+	// 	// 	scaleVal = 0.8
+	// 	// }
+		
+	// }
 	
 	var margin = {top: 0, right: 0, bottom: 0, left:0};
 	
@@ -93,18 +113,12 @@ export function doggies(dogs, pics, dogbreed) {
 	var defs = svg.append("defs");
 
 	// var tooltip = d3.select("#graphicContainer .infoInner")
-
-	var radiusVal = 20
-
-	if (isMobile) {
-		radiusVal = 20
-	}
-
+	
 	var imgW = radiusVal * 2
 	var imgH = radiusVal * 2
 
-	var linkMax = Math.min(winW/2 - (radiusVal *2), 170) 
-	var linkMin = Math.min(winW/4 - (radiusVal *2), 70) 
+	var linkMax = Math.min(width/2 - (radiusVal *2), 170) 
+	var linkMin = Math.min(width/4 - (radiusVal *2), 70) 
 
 	var extent = d3.extent(dogs.links, d => d.outValue)
 
@@ -253,9 +267,15 @@ export function doggies(dogs, pics, dogbreed) {
 					.domain([''])
 					.range(['#005689','#b82266','#767676','#767676'])				
 		
+	var chartDataSave, atomSave, currentDogSave, currentGroupSave, chargeSave; 				
 
+	function makeChart(selectedData, atom, currentDog, currentGroup, charge=-1000, chartWidth=width, type='center') {
 
-	function makeChart(selectedData, atom, currentDog, currentGroup, charge=-1000, type='center') {
+		chartDataSave = selectedData
+		atomSave = atom
+		currentDogSave = currentDog
+		currentGroupSave = currentGroup
+		chargeSave = charge
 
 		context.select("#statusMessage").remove()
 
@@ -300,7 +320,7 @@ export function doggies(dogs, pics, dogbreed) {
 		      .force("link", d3.forceLink(selectedData.links).id(d => d.id).distance(d => linkLength(d.outValue)))
 		      // .force("link", d3.forceLink(selectedData.links).id(d => d.id))
 		      .force("charge", d3.forceManyBody().strength(charge))
-		     .force("center", d3.forceCenter(width / 2, height / 2))
+		     .force("center", d3.forceCenter(chartWidth / 2, height / 2))
 		     // .force("x", d3.forceX())
       	// 	.force("y", d3.forceY())
 		     .force("collide", d3.forceCollide().radius(radiusVal + 2).iterations(2))
@@ -409,7 +429,7 @@ export function doggies(dogs, pics, dogbreed) {
 
 		 	nodes.attr("transform", function(d) {
 		 		var r = radiusVal + 0.5
-		 		return "translate(" + (d.x = Math.max(r + 4, Math.min(width - (r + 4), d.x))) + "," + (d.y = Math.max(r + 4, Math.min(height - (r + 4), d.y))) + ")";
+		 		return "translate(" + (d.x = Math.max(r + 4, Math.min(chartWidth - (r + 4), d.x))) + "," + (d.y = Math.max(r + 4, Math.min(height - (r + 4), d.y))) + ")";
 	  		})
   	
 		 	linkText
@@ -436,37 +456,21 @@ export function doggies(dogs, pics, dogbreed) {
 
 		  });	
 
-		 	function makeTooltip() {
+		 // 	function makeTooltip() {
 
-		 		return d => {	 		
-		 		var text = `<h3>${d.source.breed} and ${d.target.breed}</h3><br>
-							<p>Share ${d.outValue} bps or ${d.pct}%</p>`
+		 // 		return d => {	 		
+		 // 		var text = `<h3>${d.source.breed} and ${d.target.breed}</h3><br>
+			// 				<p>Share ${d.outValue} bps or ${d.pct}%</p>`
 
-		  	// 	tooltip.transition()
-					// .duration(200)
-				 //   	.style("opacity", .9);
+		 //  	// 	tooltip.transition()
+			// 		// .duration(200)
+			// 	 //   	.style("opacity", .9);
 
-				tooltip.html(text)   	
+			// 	tooltip.html(text)   	
 
-				// var mouseX = d3.event.pageX
-		  //       var mouseY = d3.event.pageY
-		  //       var half = width/2;
-		  //       var tipHeight = document.querySelector("#tooltip").getBoundingClientRect().height
-				// var tipWidth = document.querySelector("#tooltip").getBoundingClientRect().width
-		        
-		  //       if (mouseX < half) {
-		  //           tooltip.style("left", (mouseX + 10 ) + "px");
-		  //       }
 
-		  //       else if (mouseX >= half) {
-		  //           tooltip.style("left", (mouseX - tipWidth - 10) + "px");
-		  //       }
-
-		  //       // tooltip.style("left",mouseX + "px");
-		  //       tooltip.style("top",mouseY + "px");
-
-		    	}
-		 }
+		 //    	}
+		 // }
 
 		 function resetTooltip() {
 		 	return blah => {
@@ -599,6 +603,7 @@ export function doggies(dogs, pics, dogbreed) {
 
 
 	function filterGroup(filterBy) {
+
 		// Clone dogs so we don't modify the orig data with d3 force stuff
 		var dogClone = JSON.parse(JSON.stringify(dogs))
 
@@ -628,7 +633,7 @@ export function doggies(dogs, pics, dogbreed) {
 	breedSelector.on("change", function() {
 
 		radiusVal = 20
-
+		var newWidth = document.querySelector(`.${dogbreed} #graphicContainer`).getBoundingClientRect().width
 		if (isMobile) {
 			radiusVal = 20
 		}
@@ -638,7 +643,7 @@ export function doggies(dogs, pics, dogbreed) {
 		if (currentDog != "nil") {
 			var newData = filterData(d3.select(this).property('value'));
 				// console.log("newData",newData)
-			makeChart(newData, 'default', currentDog, currentGroup)
+			makeChart(newData, 'default', currentDog, currentGroup, -1000, newWidth)
 			groupSelector.property("value", "nil")
 		}
 		
@@ -650,7 +655,7 @@ export function doggies(dogs, pics, dogbreed) {
 
 	groupSelector.on("change", function() {
 		radiusVal = 20
-
+		var newWidth = document.querySelector(`.${dogbreed} #graphicContainer`).getBoundingClientRect().width
 		if (isMobile) {
 			radiusVal = 10
 		}
@@ -659,7 +664,7 @@ export function doggies(dogs, pics, dogbreed) {
 		console.log(currentGroup)
 		if (currentGroup != "nil") {
 			var newData = filterGroup(currentGroup);
-			makeChart(newData,'default', currentDog, currentGroup, -50)
+			makeChart(newData,'default', currentDog, currentGroup, -50, newWidth)
 			breedSelector.property("value", "nil")
 		}
 		
@@ -756,6 +761,43 @@ export function doggies(dogs, pics, dogbreed) {
 	}
 
 	makeKey()
+
+	var to=null
+	// var lastWidth = document.querySelector(`.${dogbreed} #graphicContainer`).getBoundingClientRect().width;
+	window.addEventListener('resize', function() {
+		var thisWidth = document.querySelector(`.${dogbreed} #graphicContainer`).getBoundingClientRect().width
+		if (width != thisWidth) {
+			window.clearTimeout(to);
+			to = window.setTimeout(function() {
+					resizeChart(thisWidth)
+				}, 100)
+		}
+	
+	})
+
+	function resizeChart(newWidth) {
+
+		if (newWidth <= 620) {
+			isMobile = true
+		}		
+
+		if (isMobile) {
+			radiusVal = 10
+		}
+
+		else {
+			radiusVal = 20
+		}
+
+		console.log("resize")
+		linkMax = Math.min(newWidth/2 - (radiusVal *2), 170) 
+		linkMin = Math.min(newWidth/4 - (radiusVal *2), 70) 
+		svg.attr("width", newWidth - margin.left - margin.right)
+
+		linkLength.range([linkMax, linkMin])
+
+		makeChart(chartDataSave, atomSave, currentDogSave, currentGroupSave, chargeSave, newWidth)
+	}
 
 }
 	

@@ -1,12 +1,12 @@
 <div class="interactive-wrapper all">
     <a name="doggraphic" class="articleLink"></a>
     <div class="interactive-container offset">
-        <div class="row">
+        <div class="row" >
     	    <div class="main-col">
     	            <div class="row figureTitle">How closely related <span id="currentDog"></span> to other breeds?</div>
-    	            <div class="row subTitle">Showing a relatedness index between two breeds based on 'identical-by-descent haplotype sharing' which measures identical sections of DNA inherited from a common ancestor</div>	
+    	            <div class="row subTitle">Showing a relatedness index between two breeds based on 'identical-by-descent haplotype sharing' which measures identical sections of DNA inherited from a common ancestor. COO or USA denotes if a dog was sampled from the country of breed origin (COO) or the United States</div>	
     	    
-                    <div class="notes row">
+                    <div class="notes row" id="controlRow">
                         
                         <div class="col30 controls">    
                             <div class="row ">View by breed</div>
@@ -23,26 +23,32 @@
                             <div id="chartKey"></div>    
                         </div>   
 
+                        <img src="<%= path %>/hint-selectors.png" id="hintSelector"/>    
                     </div>
 
                     <div class="notes">
-                        <div class="upDownButton"><b>Group key**</b> <span class="upDown">▼</span></div>
+                        <div class="upDownButton"><b>Group key*</b> <span class="upDown">▼</span></div>
                         <div id="colorKey" class="hide"> </div>
                     </div>
-            </div>    
+                    
+            </div>
+            
         </div>
     
     
         <div id="graphicContainer">
                 <div id="infoButton">
 
-                </div>    
+                </div>
+
+                
+                <img src="<%= path %>/hint-dogs.png" id="hintDogs"/>    
 
                 <div id="statusMessage" class="btn">Loading...</div>
         </div>
 
         <div class="row notes">
-            <!-- **Groups are the 23 clades given by Ostrander et al.'s analysis. Colors are mostly to indicate whether two dogs are in different clades, rather than to identify the specific clades as it's very difficult to make a categorical colour key work with 23 colours -->
+            *See notes at the end of the article for more detail
         </div>
     </div>
 </div>
