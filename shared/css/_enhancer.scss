@@ -322,6 +322,15 @@ a, .u-fauxlink {
     -webkit-box-decoration-break: clone;
 }
 
+.android, .ios {
+
+  .element-image figcaption {
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+}
+
 
 // .content__main-column--interactive blockquote, .prose blockquote {
 //   font-style: normal;
