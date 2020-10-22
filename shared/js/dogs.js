@@ -97,6 +97,18 @@ export function doggies(dogs, pics, dogbreed) {
 		
 	// }
 	
+
+	// context.on("mouseover", fadeHints)
+
+	var hints = true
+
+	function fadeHints() {
+			context.selectAll(".hints").transition().duration(500).style("opacity", 0)
+			hints = false
+	}
+
+	context.selectAll(".hints").on("click", fadeHints)
+
 	var margin = {top: 0, right: 0, bottom: 0, left:0};
 	
 	var forceStrength,bubblesExist;
@@ -109,7 +121,6 @@ export function doggies(dogs, pics, dogbreed) {
 				.attr("id", "svg")
 				.attr("overflow", "hidden");
 
-	
 	var defs = svg.append("defs");
 
 	// var tooltip = d3.select("#graphicContainer .infoInner")
@@ -495,6 +506,10 @@ export function doggies(dogs, pics, dogbreed) {
 		  function fade(opacity, action) {
 
 		    return d => {
+
+		    	if (hints) {
+		    		fadeHints();
+		    	}	
 		      nodes.style('stroke-opacity', function (o) {
 		        const thisOpacity = isConnected(d, o) ? 1 : opacity;
 		        this.setAttribute('fill-opacity', thisOpacity);
@@ -530,6 +545,10 @@ export function doggies(dogs, pics, dogbreed) {
 		 function fade2(opacity, action) {
 
 		    return d => {
+
+		    	if (hints) {
+		    		fadeHints();
+		    	}	
 		    	nodes.style('stroke-opacity', function (o) {
 			        const thisOpacity = (d.source.id === o.id || d.target.id === o.id ? 1 : opacity)
 			        this.setAttribute('fill-opacity', thisOpacity);
@@ -630,6 +649,12 @@ export function doggies(dogs, pics, dogbreed) {
 		return filteredData
 	}
 
+	breedSelector.on("click", function() {
+		if (hints) {
+		    		fadeHints();
+		    	}	
+		    })
+
 	breedSelector.on("change", function() {
 
 		radiusVal = 20
@@ -653,7 +678,16 @@ export function doggies(dogs, pics, dogbreed) {
 	
 	});
 
+	groupSelector.on("click", function() {
+		if (hints) {
+		    		fadeHints();
+		    	}	
+		    })
+
 	groupSelector.on("change", function() {
+
+
+
 		radiusVal = 20
 		var newWidth = document.querySelector(`.${dogbreed} #graphicContainer`).getBoundingClientRect().width
 		if (isMobile) {
@@ -777,17 +811,17 @@ export function doggies(dogs, pics, dogbreed) {
 
 	function resizeChart(newWidth) {
 
-		if (newWidth <= 620) {
-			isMobile = true
-		}		
+		// if (newWidth <= 620) {
+		// 	isMobile = true
+		// }		
 
-		if (isMobile) {
-			radiusVal = 10
-		}
+		// if (isMobile) {
+		// 	radiusVal = 10
+		// }
 
-		else {
-			radiusVal = 20
-		}
+		// else {
+		// 	radiusVal = 20
+		// }
 
 		console.log("resize")
 		linkMax = Math.min(newWidth/2 - (radiusVal *2), 170) 
