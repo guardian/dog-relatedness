@@ -70,7 +70,7 @@ export function doggies(dogs, pics, dogbreed) {
 
 	scaleVal = 1260
 
-	var radiusVal = 20
+	var radiusVal = 25
 
 	if (isMobile) {
 		radiusVal = 20
@@ -103,7 +103,7 @@ export function doggies(dogs, pics, dogbreed) {
 	var hints = true
 
 	function fadeHints() {
-			context.selectAll(".hints").transition().duration(500).style("opacity", 0)
+			context.selectAll(".hints").transition().duration(500).style("opacity", 0).style("pointer-events", "none")
 			hints = false
 	}
 
@@ -657,7 +657,7 @@ export function doggies(dogs, pics, dogbreed) {
 
 	breedSelector.on("change", function() {
 
-		radiusVal = 20
+		radiusVal = 25
 		var newWidth = document.querySelector(`.${dogbreed} #graphicContainer`).getBoundingClientRect().width
 		if (isMobile) {
 			radiusVal = 20
@@ -691,7 +691,7 @@ export function doggies(dogs, pics, dogbreed) {
 		radiusVal = 20
 		var newWidth = document.querySelector(`.${dogbreed} #graphicContainer`).getBoundingClientRect().width
 		if (isMobile) {
-			radiusVal = 10
+			radiusVal = 20
 		}
 		var currentDog = undefined
 		var currentGroup = d3.select(this).property('value')

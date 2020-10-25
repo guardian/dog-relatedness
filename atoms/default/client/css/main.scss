@@ -54,6 +54,17 @@
 
     }
 
+    @media (max-width: 450px) {
+        #hintSelector {
+            max-width: 50%;
+        }
+
+        #hintDogs {
+            max-width:50%;
+        }
+
+    }
+
 
     #infoPanel {
     	background-color: #FFF;

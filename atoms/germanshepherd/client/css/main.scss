@@ -44,6 +44,46 @@
         font-size:10px;
     }
 
+    #hintSelector {
+        position: absolute;
+        left: 180px;
+        top: 54px;
+    }
+
+    #hintDogs {
+        position: absolute;
+        left: 50%;
+        top: 20%;
+    }
+
+    .hints {
+        cursor: pointer;
+    }
+
+    @media (max-width: 750px) {
+        #hintSelector {
+        left: 180px;
+        top: 60px;
+        }
+
+        #hintDogs {
+            left: 50%;
+            top: 20%;
+        }
+
+    }
+
+        @media (max-width: 450px) {
+        #hintSelector {
+            max-width: 50%;
+        }
+
+        #hintDogs {
+            max-width:50%;
+        }
+
+    }
+
     .upDown {
             width:14px;
             height:14px;
